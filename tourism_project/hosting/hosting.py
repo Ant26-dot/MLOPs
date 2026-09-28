@@ -3,7 +3,7 @@ import os
 
 # --- Configuration ---
 # The target Hugging Face Space repository
-HF_SPACE_REPO_ID = "lomface/Tourism-Package-Prediction-App"
+HF_SPACE_REPO_ID = "lomface/Tourism-Package-Prediction"
 LOCAL_DEPLOY_DIR = "tourism_project/deployment"
 
 # Initialize the Hugging Face API client using the loaded environment token
