@@ -1,0 +1,17 @@
+# ==========================================================================
+# tourism Pipeline Requirements (Root)
+# ==========================================================================
+# This file is used by the GitHub Actions Workflow to set up the runner 
+# environment. It installs the necessary packages to execute your data 
+# registration, preprocessing, training, and deployment scripts.
+#
+# Note: This is distinct from 'tourism_project/deployment/requirements.txt',
+# which is specifically read by Hugging Face to run the Streamlit app.
+# ==========================================================================
+
+huggingface_hub==0.24.0
+datasets==2.20.0
+pandas==2.2.2
+scikit-learn==1.5.0
+xgboost==2.0.3
+joblib>=1.1.0
