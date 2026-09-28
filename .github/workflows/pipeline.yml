@@ -22,7 +22,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r tourism_project/requirements.txt
+          pip install -r requirements.txt
 
       - name: Upload Dataset to Hugging Face Hub
         env:
@@ -44,7 +44,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r tourism_project/requirements.txt
+          pip install -r requirements.txt
 
       - name: Run Data Preparation
         env:
@@ -66,7 +66,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r tourism_project/requirements.txt
+          pip install -r requirements.txt
 
       - name: Model Training and Registration
         env:
@@ -76,12 +76,24 @@ jobs:
           python tourism_project/model_building/train.py --model_version model_1
           python tourism_project/model_building/train.py --model_version model_2
 
+      - name: Upload Trained Models
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-joblibs
+          path: tourism_project/model_building/joblibs/
+
   model-comparison:
     needs: model-training
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        
+      - name: Download Trained Models
+        uses: actions/download-artifact@v4
+        with:
+          name: model-joblibs
+          path: tourism_project/model_building/joblibs/
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -90,7 +102,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r tourism_project/requirements.txt
+          pip install -r requirements.txt
 
       - name: Evaluate and Promote Champion Model
         env:
@@ -112,7 +124,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r tourism_project/requirements.txt
+          pip install -r requirements.txt
 
       - name: Push files to Frontend Hugging Face Space
         env:
