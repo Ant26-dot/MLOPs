@@ -131,7 +131,7 @@ scaler_filename = "scaler.joblib"
 scaler_filepath = os.path.join(LOCAL_OUTPUT_DIR, scaler_filename)
 joblib.dump(scaler, scaler_filepath)
 
-hf_api.upload_file( 
+hf_api.upload_file(
     path_or_fileobj=scaler_filepath,
     path_in_repo=scaler_filename,
     repo_id=HF_MODEL_REPO_ID,

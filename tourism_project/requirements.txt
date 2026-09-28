@@ -1,8 +1,8 @@
 # ==========================================================================
 # tourism Pipeline Requirements (Root)
 # ==========================================================================
-# This file is used by the GitHub Actions Workflow to set up the runner 
-# environment. It installs the necessary packages to execute your data 
+# This file is used by the GitHub Actions Workflow to set up the runner
+# environment. It installs the necessary packages to execute your data
 # registration, preprocessing, training, and deployment scripts.
 #
 # Note: This is distinct from 'tourism_project/deployment/requirements.txt',

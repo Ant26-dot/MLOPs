@@ -19,7 +19,7 @@ except RepositoryNotFoundError:
 
 # Points directly to /content/tourism_project/data as requested
 api.upload_folder(
-    folder_path="/content/tourism_project/data",
+    folder_path="tourism_project/data",
     repo_id=repo_id,
     repo_type=repo_type,
 )
