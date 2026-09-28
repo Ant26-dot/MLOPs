@@ -22,13 +22,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r tourism_project/requirements.txt
 
       - name: Upload Dataset to Hugging Face Hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          python model_building/data_register.py
+          python tourism_project/model_building/data_register.py
 
   data-prep:
     needs: register-dataset
@@ -44,13 +44,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r tourism_project/requirements.txt
 
       - name: Run Data Preparation
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          python model_building/prep_2.py
+          python tourism_project/model_building/prep_2.py
 
   model-training:
     needs: data-prep
@@ -66,15 +66,15 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r tourism_project/requirements.txt
 
       - name: Model Training and Registration
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          python model_building/train.py --model_version model_0
-          python model_building/train.py --model_version model_1
-          python model_building/train.py --model_version model_2
+          python tourism_project/model_building/train.py --model_version model_0
+          python tourism_project/model_building/train.py --model_version model_1
+          python tourism_project/model_building/train.py --model_version model_2
 
   model-comparison:
     needs: model-training
@@ -90,13 +90,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r tourism_project/requirements.txt
 
       - name: Evaluate and Promote Champion Model
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          python model_building/compare_models.py
+          python tourism_project/model_building/compare_models.py
 
   deploy-hosting:
     needs: [model-comparison, data-prep, register-dataset]
@@ -112,10 +112,10 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r tourism_project/requirements.txt
 
       - name: Push files to Frontend Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          python hosting/hosting.py
+          python tourism_project/hosting/hosting.py
